@@ -9,9 +9,7 @@ class PLC_OPCua:
         if not PLC_OPCua.TLOOP:
             PLC_OPCua.TLOOP = ThreadLoop()
             PLC_OPCua.TLOOP.start()
-        print("init")
         self._server = Server(tloop=PLC_OPCua.TLOOP)
-        print("server")
         self._server.set_security_policy([
                         ua.SecurityPolicyType.NoSecurity,
                         ua.SecurityPolicyType.Basic256Sha256_SignAndEncrypt,
@@ -43,7 +41,6 @@ class PLC_OPCua:
         self.ready:bool = False
         
         self._server.start()
-        print("start")
         PLC_OPCua.instances.append(self)
         
     def update_opc(self):
